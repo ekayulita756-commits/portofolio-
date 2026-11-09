@@ -1,15 +1,25 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
+
+const projectRoot = import.meta.dirname || path.resolve('.');
 
 export default defineConfig(() => {
   return {
+    root: projectRoot,
     base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(import.meta.dirname || process.cwd(), '.'),
+        '@': path.resolve(projectRoot, '.'),
+      },
+    },
+    build: {
+      outDir: path.resolve(projectRoot, 'dist'),
+      emptyOutDir: true,
+      rollupOptions: {
+        input: path.resolve(projectRoot, 'index.html'),
       },
     },
     server: {

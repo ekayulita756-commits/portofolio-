@@ -1,5 +1,7 @@
 {
-  "buildCommand": "npm run build",
+  "framework": "vite",
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npx --yes vite build",
   "outputDirectory": "dist",
   "rewrites": [
     {
